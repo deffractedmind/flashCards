@@ -1,10 +1,9 @@
-
 var fs = require('fs');
-// var ExecTest = require('./ExecTest')
+var ExecTest = require('./selfTest.js')
 var AdminCmd = function() {
   var argCommand = process.argv[2];
 
-  if (argCommand === 'admin' && process.argv.length === 5) {
+  if (argCommand === 'addQ&A' && process.argv.length === 5) {
     //add questions mode
     var argQuestion = process.argv[3];
     var argAnswer = process.argv[4]
@@ -13,23 +12,17 @@ var AdminCmd = function() {
     // var appendItem = ',{"question":"' + argQuestion + '","answer":"' + argAnswer + '"}';
 
     fs.appendFile("QandA.json", appendItem, function(err) {
-
-      if (err) {
-        console.log(err);
-      }
-      else {
-        console.log(appendItem);
-      }
-
+      if (err) console.log(err);
+      console.log("Add another Q&A or 'node CLI.js selfTest to execute the self test.'");
     });
   }
-  else if (argCommand === 'cloze') {
+  else if (argCommand === 'selfTest') {
     //testing mode
     console.log(argCommand);
-    // ExecTest();
+    ExecTest();
   }
   else {
-    console.log("usage: node admin.js [admin 'Question' 'Answer' | cloze]");
+    console.log("usage: node flashCardApp.js [addQ&A 'Question' 'Answer' | selfTest]");
   }
 }
 
